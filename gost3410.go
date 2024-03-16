@@ -51,11 +51,11 @@ func TC26512B() elliptic.Curve {
 }
 
 var (
-	oidNamedCurveP224     = asn1.ObjectIdentifier{1, 3, 132, 0, 33}
-	oidNamedCurveP256     = asn1.ObjectIdentifier{1, 2, 840, 10045, 3, 1, 7}
-	oidNamedCurveP384     = asn1.ObjectIdentifier{1, 3, 132, 0, 34}
-	oidNamedCurveP521     = asn1.ObjectIdentifier{1, 3, 132, 0, 35}
-	oidNamedCurveTC26512A = asn1.ObjectIdentifier{1, 2, 643, 7, 1, 2, 1, 1, 1}
+	//oidNamedCurveP224     = asn1.ObjectIdentifier{1, 3, 132, 0, 33}
+	//oidNamedCurveP256     = asn1.ObjectIdentifier{1, 2, 840, 10045, 3, 1, 7}
+	//oidNamedCurveP384     = asn1.ObjectIdentifier{1, 3, 132, 0, 34}
+	//oidNamedCurveP521     = asn1.ObjectIdentifier{1, 3, 132, 0, 35}
+	oidNamedCurveTC26512A = asn1.ObjectIdentifier{1, 2, 643, 7, 1, 2, 1, 1, 1} // FIX: вставил для 256, нужно для 512
 	oidNamedCurveTC26512B = asn1.ObjectIdentifier{1, 2, 643, 7, 1, 2, 1, 1, 2}
 )
 
@@ -113,7 +113,7 @@ func generateTC26Key(filename string) (key *ecdsa.PrivateKey) {
 		log.Fatalf("Failed to generate TC 26 GOST R 34.10-2012 key: %s\n", err)
 	}
 
-	keyDer, err := x509.MarshalECPrivateKey(key)
+	keyDer, err := MarshalECPrivateKey(key)
 	if err != nil {
 		log.Fatalf("Failed to serialize ECDSA key: %s\n", err)
 	}
